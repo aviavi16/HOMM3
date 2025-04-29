@@ -67,6 +67,10 @@
     <h2>הצטרף לקבוצת הוואטסאפ</h2>
 
     <form id="joinForm">
+
+        <label>מספר טלפון:</label>
+        <input type="tel" id="phone" required>
+
       <label>מה היצור האהוב עליך?</label>
       <input type="text" id="creature" required>
 
@@ -82,18 +86,28 @@
 
   <script>
     const form = document.getElementById('joinForm');
-
-    form.addEventListener('submit', function(event) {
+  
+    form.addEventListener('submit', async function(event) {
       event.preventDefault();
-      
+  
       const creature = document.getElementById('creature').value.trim();
       const castle = document.getElementById('castle').value.trim();
       const hero = document.getElementById('hero').value.trim();
-
-      if (creature && castle && hero) {
-        window.location.href = "https://chat.whatsapp.com/KsCbk3amsLL41x4fASW59m";
+      const phone = document.getElementById('phone').value.trim();
+  
+      if (creature && castle && hero && phone) {
+        await fetch('https://script.google.com/macros/s/AKfycbz-ajWKpJtZMO_HF6D4iqJxQb4Bh9SXHr6Rfw3r8ASONuIhdOswOKFVV4AFIAl2Zw/exec', {
+          method: 'POST',
+          body: JSON.stringify({ creature, castle, hero, phone }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+  
+        alert("הבקשה נשלחה בהצלחה!");
+        form.reset();
       } else {
-        alert('אנא מלא את כל השדות');
+        alert("אנא מלא את כל השדות");
       }
     });
   </script>
