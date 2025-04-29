@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>הצטרפות לקבוצת וואטסאפ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      direction: rtl;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1ebe57;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>הצטרף לקבוצת הוואטסאפ</h2>
+
+    <form id="joinForm">
+      <label>מה היצור האהוב עליך?</label>
+      <input type="text" id="creature" required>
+
+      <label>מה הטירה האהובה עליך?</label>
+      <input type="text" id="castle" required>
+
+      <label>מי הגיבור האהוב עליך?</label>
+      <input type="text" id="hero" required>
+
+      <button type="submit">הצטרף עכשיו</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('joinForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const creature = document.getElementById('creature').value.trim();
+      const castle = document.getElementById('castle').value.trim();
+      const hero = document.getElementById('hero').value.trim();
+
+      if (creature && castle && hero) {
+        window.location.href = "https://chat.whatsapp.com/KsCbk3amsLL41x4fASW59m";
+      } else {
+        alert('אנא מלא את כל השדות');
+      }
+    });
+  </script>
+
+</body>
+</html>
