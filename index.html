@@ -4,80 +4,101 @@
   <meta charset="UTF-8">
   <title>הצטרפות לקבוצת וואטסאפ</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      font-family: 'Varela Round', Arial, sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
       margin: 0;
       direction: rtl;
     }
 
     .form-container {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      width: 300px;
+      background: #ffffff;
+      padding: 30px 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      width: 320px;
       text-align: center;
+      animation: fadeIn 1s ease;
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       color: #333;
+      font-size: 24px;
     }
 
     label {
       display: block;
       margin-bottom: 5px;
-      font-weight: bold;
       text-align: right;
+      font-weight: bold;
+      font-size: 14px;
+      color: #555;
     }
 
-    input[type="text"] {
+    input[type="text"], input[type="tel"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus, input[type="tel"]:focus {
+      border-color: #66a6ff;
+      outline: none;
     }
 
     button {
-      background-color: #25d366;
-      color: white;
+      width: 100%;
+      padding: 12px;
+      background: #25d366;
       border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
+      border-radius: 10px;
       font-size: 16px;
+      color: white;
+      cursor: pointer;
       transition: background-color 0.3s ease;
+      margin-top: 10px;
     }
 
     button:hover {
       background-color: #1ebe57;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
+
 <body>
 
   <div class="form-container">
     <h2>הצטרף לקבוצת הוואטסאפ</h2>
 
     <form id="joinForm">
+      <label for="phone">מספר טלפון:</label>
+      <input type="tel" id="phone" required>
 
-        <label>מספר טלפון:</label>
-        <input type="tel" id="phone" required>
-
-      <label>מה היצור האהוב עליך?</label>
+      <label for="creature">מה היצור האהוב עליך?</label>
       <input type="text" id="creature" required>
 
-      <label>מה הטירה האהובה עליך?</label>
+      <label for="castle">מה הטירה האהובה עליך?</label>
       <input type="text" id="castle" required>
 
-      <label>מי הגיבור האהוב עליך?</label>
+      <label for="hero">מי הגיבור האהוב עליך?</label>
       <input type="text" id="hero" required>
 
       <button type="submit">הצטרף עכשיו</button>
@@ -86,24 +107,22 @@
 
   <script>
     const form = document.getElementById('joinForm');
-  
+
     form.addEventListener('submit', async function(event) {
       event.preventDefault();
-  
+
       const creature = document.getElementById('creature').value.trim();
       const castle = document.getElementById('castle').value.trim();
       const hero = document.getElementById('hero').value.trim();
       const phone = document.getElementById('phone').value.trim();
-  
+
       if (creature && castle && hero && phone) {
-        await fetch('https://script.google.com/macros/s/AKfycbyc5N2vhZ9UrQxd-FNaJfUqKmuREMywJdHw_3TT-HCjkS9cjzORuY9T5EIJ6Zu4OQ/exec', {
+        await fetch('https://script.google.com/macros/s/AKfycbwMEcCE8GpsYnju2VBbsI1T5Q32mfrLw1CRlCu5dlsSKcvR9hTjKKEUDp19KbK3HQ/exec', {
           method: 'POST',
           body: JSON.stringify({ creature, castle, hero, phone }),
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          headers: { 'Content-Type': 'application/json' }
         });
-  
+
         alert("הבקשה נשלחה בהצלחה!");
         form.reset();
       } else {
