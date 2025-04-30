@@ -116,20 +116,10 @@
       const hero = document.getElementById('hero').value.trim();
       const phone = document.getElementById('phone').value.trim();
   
-      if (creature && castle && hero && phone) {
-        try {
-          await fetch('https://script.google.com/macros/s/AKfycbwMEcCE8GpsYnju2VBbsI1T5Q32mfrLw1CRlCu5dlsSKcvR9hTjKKEUDp19KbK3HQ/exec', {
-            method: 'POST',
-            body: JSON.stringify({ creature, castle, hero, phone }),
-            headers: { 'Content-Type': 'application/json' }
-          });
-  
-          window.location.href = "thankyou.html"; // מעבר לעמוד תודה
-        } catch (error) {
-          alert("אירעה שגיאה בשליחה. נסה שוב בעוד רגע.");
-        }
+     if (creature && castle && hero) {
+        window.location.href = "https://chat.whatsapp.com/KsCbk3amsLL41x4fASW59m";
       } else {
-        alert("אנא מלא את כל השדות");
+        alert('אנא מלא את כל השדות');
       }
     });
   </script>  
